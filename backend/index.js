@@ -218,7 +218,23 @@ app.get("/forum/threads/:category", async (req, resp) => {
     } catch (err) {
       resp.status(500).json({ error: err.message });
     }
-  });
+});
+
+app.get("/forum/thread/:id", async (req, resp) => {
+    try {
+      const { id } = req.params;
+      const thread = await Thread.findById(id);
+  
+      if (thread) {
+        resp.status(200).json(thread);
+      } else {
+        resp.status(200).json({ message: "No thread found!" });
+      }
+    } catch (err) {
+      resp.status(500).json({ error: err.message });
+    }
+});
+  
   
 app.post("/forum/new_thread", async (req, resp) => {
     try{
@@ -247,6 +263,21 @@ app.post("/forum/thread/create_comment", async (req, resp) => {
         }
     }catch(e){
         resp.status(500).json({err: "Failed to create comment!"})
+    }
+})
+
+app.get("/forum/:id/comments", async (req, resp) => {
+    try{
+        const { id } = req.params;
+        const comments = await Comment.find({ post: id });
+    
+        if (comments && comments.length > 0) {
+            resp.status(200).json(comments);
+        } else {
+            resp.status(200).json({ message: "No comments found!" });
+        }
+    }catch(err){
+        resp.status(500).json({err: "Failed to fetch comments!"})
     }
 })
 

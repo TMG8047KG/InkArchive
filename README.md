@@ -1,12 +1,43 @@
-# React + Vite
+# Ink Archive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ink Archive is a free drawing platform that allows users to create, share, and explore digital artwork. This web application provides a seamless drawing experience, user authentication, and community features.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive drawing canvas
+- User authentication (register, login, and guest access)
+- Responsive design with interactive background effects
+- Artwork sharing capabilities
+- Community forum for artists to connect
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js and npm installed
+- Backend server running on localhost:5000
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+
+## Usage
+
+- **Home Page**: Browse to the main page to learn about Ink Archive
+- **Drawing**: Click "Start Drawing" or "Draw" to access the canvas
+- **Authentication**: Register for an account or use guest access for quick drawing
+
+## Project Structure
+
+The application uses React with React Router for navigation. Key components include:
+- `MainPage.jsx`: Landing page with interactive background and navigation
+- User authentication using local storage
+- Canvas page for drawing functionality

@@ -1,9 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles/createdthread.module.css';
 import defaultPic from '../../src/assets/noicon.png';
 import PostInput from './postcomment';
+import Commentblock from './comment';
 
 const CreatedThread = ({ thread, owner }) => {
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    const getComments = async () =>{
+      console.log(thread._id);
+      try{
+        const commentList = await fetch(`http://localhost:5000/forum/${thread._id}/comments`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        });
+        const com = await commentList.json();
+        console.log(com);
+        setComments(com);
+      }catch(err){
+          console.log(err);
+      }
+    }
+    getComments();
+  },[]);
+
   return (
     <div className={styles.threadContainer}>
       <div className={styles.header}>
@@ -28,6 +51,9 @@ const CreatedThread = ({ thread, owner }) => {
         <span className={styles.commentLabel}>Comments</span>
         <hr className={styles.line} />
       </div>
+      {comments.length > 0 ? comments.map((comment) => (
+        <Commentblock userId={comment.owner} text={comment.content} />
+      )) : <p>No comments, yet!</p>}
       <PostInput/>
     </div>
   );

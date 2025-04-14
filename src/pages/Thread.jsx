@@ -23,22 +23,22 @@ const Forum = () => {
     }
     const thread = async () => {
         try{
-            const threadResponse = await fetch(`http://localhost:5000/forum/general/${id}`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-            });
-            const threadJson = await threadResponse.json();
-            setThread(threadJson);
-            console.log(threadJson.owner);
-            const ownerResponse = await fetch(`http://localhost:5000/api/user/${threadJson.owner}`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-            });
-            setOwner(await ownerResponse.json());
+          const threadResponse = await fetch(`http://localhost:5000/forum/thread/${id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+          });
+          const threadJson = await threadResponse.json();
+          setThread(threadJson);
+          console.log(threadJson);
+          const ownerResponse = await fetch(`http://localhost:5000/api/user/${threadJson.owner}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+          });
+          setOwner(await ownerResponse.json());
         }catch(err){
             console.log(err);
         }
