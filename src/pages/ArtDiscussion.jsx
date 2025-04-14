@@ -65,7 +65,7 @@ const ArtDiscussion = () => {
               <p className={styles.threadLoading}>Loading threads...</p>
             ) : threads.length > 0 ?
               threads.map((thread) => (
-                <ForumThread id={thread._id} title={thread.title} ownerId={thread.owner}/>
+                <ForumThread id={thread._id} title={thread.title} ownerId={thread.owner} category={"artdiscussion"}/>
               )) : <p className={styles.threadLoading}>No threads found!</p>
             }
           </div>

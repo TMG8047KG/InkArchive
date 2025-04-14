@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from '../components/styles/postcomment.module.css';
 import { useLocation } from 'react-router-dom';
 
-const PostInput = () => {
+const PostInput = ({ refreshComments}) => {
   const [user, setUser] = useState(null);
   const [content, setContent] = useState("");
   const pathname = useLocation().pathname.split("/");
@@ -28,7 +28,11 @@ const PostInput = () => {
       }
     });
     const result = await response.json();
+    setContent("");
     console.log(result);
+    if (refreshComments) {
+      refreshComments();
+    }
   };
   
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ToolSidebar from '../components/toolsidebar';
 import ColorSidebar from '../components/colorsidebar';
 import TopToolbar from '../components/tooltopbar';
@@ -16,6 +16,9 @@ function Canvas() {
     { id: 1, name: 'Layer #1', opacity: 100, isSelected: true }
   ]);
   const [selectedLayerId, setSelectedLayerId] = useState(1);
+  
+  // Add a ref to the drawing canvas
+  const canvasRef = useRef(null);
 
   const handleEyedropperPick = (color) => {
     setSelectedColor(color);
@@ -44,12 +47,13 @@ function Canvas() {
         setSelectedTool={setSelectedTool} 
       />
       <div className={styles.canvasArea}>
-        <TopToolbar />
+        <TopToolbar canvasRef={canvasRef} />
         <div 
           className={styles.canvasContent} 
           style={{ cursor: getCanvasCursor() }}
         >
           <DrawingCanvas 
+            ref={canvasRef}
             selectedTool={selectedTool}
             brushSize={brushSize}
             brushOpacity={brushOpacity}

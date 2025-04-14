@@ -1,15 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import styles from "./styles/drawingcanvas.module.css";
 
-const DrawingCanvas = ({ 
-  selectedTool, 
-  brushSize, 
-  brushOpacity, 
-  selectedColor, 
-  layers, 
-  selectedLayerId, 
-  onEyedropperPick 
-}) => {
+const DrawingCanvas = forwardRef(({
+  selectedTool,
+  brushSize,
+  brushOpacity,
+  selectedColor,
+  layers,
+  selectedLayerId,
+  onEyedropperPick
+}, ref) => {
+  // Create a ref for the canvas element
+  
+  // Use useImperativeHandle to customize the value exposed when the component is referenced
   const canvasRef = useRef(null);
   const canvasLayersRef = useRef({});
   const isDrawingRef = useRef(false);
@@ -25,6 +28,8 @@ const DrawingCanvas = ({
   const [textInputActive, setTextInputActive] = useState(false);
   const [textPosition, setTextPosition] = useState({ x: 0, y: 0 });
   const textInputRef = useRef(null);
+
+  useImperativeHandle(ref, () => canvasRef.current);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -495,6 +500,6 @@ const DrawingCanvas = ({
       />
     </div>
   );
-};
+});
 
 export default DrawingCanvas;

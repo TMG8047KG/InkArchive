@@ -138,13 +138,13 @@ const Layers = ({ layers, setLayers, selectedLayerId, setSelectedLayerId }) => {
           <DeleteLayerIcon />
         </button>
         <div className={styles.layerMoveActions}>
-          <button onClick={() => moveLayer('up')}>▼</button>
-          <button onClick={() => moveLayer('down')}>▲</button>
+          <button onClick={() => moveLayer('up')}>▲</button>
+          <button onClick={() => moveLayer('down')}>▼</button>
         </div>
       </div>
 
       <div className={styles.layerList}>
-        {layers.slice().reverse().map(layer => (
+        {layers.slice().map(layer => (
           <div 
             key={layer.id} 
             className={`${styles.layerItem} ${layer.isSelected ? styles.selectedLayer : ''}`}

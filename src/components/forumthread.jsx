@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PostInput from './postcomment.jsx';
 
 
-const ForumThread = ({ id, title, ownerId }) => {
+const ForumThread = ({ id, title, ownerId, category }) => {
   const [owner, setOwner] = useState([]);
   const navigate = useNavigate();
   useEffect(()=>{
@@ -26,7 +26,7 @@ const ForumThread = ({ id, title, ownerId }) => {
   },[])
 
   const handleOpenThread = () => {
-    navigate(`/forum/general/${id}`)
+    navigate(`/forum/${category}/${id}`)
   }
   return (
     <div className={styles.threadContainer} onClick={handleOpenThread}>

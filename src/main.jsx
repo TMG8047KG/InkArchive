@@ -28,7 +28,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/forum" element={<Forum/>}></Route>
         <Route path="/forum/announcements" element={<Announcements/>}></Route>
         <Route path="/forum/general" element={<General/>}></Route>
-        <Route path="/forum/general/:thread" element={<Thread/>}></Route>
+        <Route path="/forum/:category/:thread" element={<Thread/>}></Route>
         <Route path="/forum/creatorcorner" element={<CreatorCorner/>}></Route>
         <Route path="/forum/artdiscussion" element={<ArtDiscussion/>}></Route>
         <Route path="/forum/arttrading" element={<ArtTrading/>}></Route>

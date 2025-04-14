@@ -27,7 +27,6 @@ const ArtTrading = () => {
             }
           })      
           const threading = await threads.json();
-          console.log(threading);
           setThreads(threading);
         }catch(error) {
           console.error("Error fetching threads:", error);
@@ -65,7 +64,7 @@ const ArtTrading = () => {
               <p className={styles.threadLoading}>Loading threads...</p>
             ) : threads.length > 0 ?
               threads.map((thread) => (
-                <ForumThread id={thread._id} title={thread.title} ownerId={thread.owner}/>
+                <ForumThread id={thread._id} title={thread.title} ownerId={thread.owner} category="arttrading"/>
               )) : <p className={styles.threadLoading}>No threads found!</p>
             }
           </div>

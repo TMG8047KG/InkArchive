@@ -281,6 +281,25 @@ app.get("/forum/:id/comments", async (req, resp) => {
     }
 })
 
+app.delete('/forum/delete-thread/:id', async (req, resp) => {
+    try {
+        const { id } = req.params;
+        
+        const thread = await Thread.findByIdAndDelete(id);
+
+        if (!thread) {
+            return resp.status(404).json({ error: 'Thread not found' });
+        }
+
+        const deletedComments = await Comment.deleteMany({ post: id })
+        
+        resp.status(200).json({ message: 'Thread and associated comments deleted successfully' });
+    } catch (error) {
+        console.error('Delete user error:', error);
+        resp.status(500).json({ error: 'Server error' });
+    }
+});
+
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');

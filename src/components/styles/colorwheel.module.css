@@ -16,6 +16,7 @@
     height: 100%;
     border-radius: 50%;
     background: conic-gradient(red, yellow, lime, cyan, blue, magenta, red);
+    rotate: 90deg;
   }
   
   .innerMask {
